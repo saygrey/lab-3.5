@@ -2,9 +2,11 @@ package com.saygrey;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 //класс строковых операций
 public class StringWorks {
@@ -39,8 +41,12 @@ public class StringWorks {
         Matcher match = regexp.matcher(formattedString);
         while(match.find()) {
             results.add(match.group());
-            System.out.println(match.group());
         }
         return results;
+    }
+    public int getMaxNum(){
+        List<Integer> out=new ArrayList<>();
+        getWordsForPattern("\\d+").stream().forEach((x)->out.add(Integer.parseInt(x)));
+        return Collections.max(out);
     }
 }
