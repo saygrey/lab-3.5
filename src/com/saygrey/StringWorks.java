@@ -3,44 +3,42 @@ package com.saygrey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //класс строковых операций
 public class StringWorks {
-    List<String> notFormattedStringList;
+    private List<String> notFormattedStringList;
+    private String formattedString="";
 
     public StringWorks(List<String> inStringList) {
         notFormattedStringList = inStringList;
+        stringListToFormattedString();
     }
 
-    //отдает лист с искомыми словами
-    public List<String> getResultList() {
-        return getListWWordsWLastCharEquNextWordFirstChar(
-                getWordsListFromString(
-                        stringListToString(notFormattedStringList)
-                ));
-    }
+    //отдает лист с искомыми словам
 
-    //преобразует список строк в единую строку
-    private String stringListToString(List<String> inStringList) {
-        String out = "";
-        for (String x : inStringList) {
-            out += x;
+    //преобразует список строк в список слов
+    private void stringListToFormattedString() {
+        String tempStr = "";
+        for (String x : notFormattedStringList) {
+            tempStr += x;
         }
-        return out;
-    }
-
-    //разбивает строку на слова
-    private List<String> getWordsListFromString(String inStr) {
-        return Arrays.asList(inStr.split("( )+"));
+        for(String word:tempStr.split("( )+")){
+            formattedString+=word+" ";
+        }
     }
 
     //ищет в списке слов искомые
-    private List<String> getListWWordsWLastCharEquNextWordFirstChar(List<String> wordsList) {
+    public List<String> getWordsForPattern(String pattern) {
+
         List<String> results = new ArrayList<>();
-        for (int i = 0; i < wordsList.size() - 1; i++) {
-            if (wordsList.get(i).toCharArray()[wordsList.get(i).toCharArray().length - 1] == wordsList.get(i + 1).toCharArray()[0]) {
-                results.add(wordsList.get(i));
-            }
+
+        Pattern regexp = Pattern.compile(pattern);
+
+        Matcher match = regexp.matcher(formattedString);
+        while(match.find()) {
+            results.add(match.group());
         }
         return results;
     }

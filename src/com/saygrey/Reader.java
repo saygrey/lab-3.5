@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Reader {
@@ -18,5 +19,9 @@ public class Reader {
             e.printStackTrace();
         }
         return strings;
+    }
+    public static String getStringFromConsole(){
+        Scanner in=new Scanner(System.in);
+        return in.nextLine();
     }
 }

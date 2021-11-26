@@ -9,6 +9,6 @@ public class Main {
 
     public static void main(String[] args) {
         StringWorks works = new StringWorks(Reader.getStringsFromFile(inFile));
-        Writer.writeListStrToFile(outFile, works.getResultList());
+        Writer.writeListStrToFile(outFile, works.getWordsForPattern(Reader.getStringFromConsole()));
     }
 }
