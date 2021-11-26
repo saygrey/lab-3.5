@@ -20,8 +20,4 @@ public class Reader {
         }
         return strings;
     }
-    public static String getStringFromConsole(){
-        Scanner in=new Scanner(System.in);
-        return in.nextLine();
-    }
 }

@@ -39,6 +39,7 @@ public class StringWorks {
         Matcher match = regexp.matcher(formattedString);
         while(match.find()) {
             results.add(match.group());
+            System.out.println(match.group());
         }
         return results;
     }
